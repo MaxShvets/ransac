@@ -1,15 +1,5 @@
 from ransac import ransac_fit
-from line_fitting import LineModel
-import numpy as np
-import matplotlib.pyplot as plt
-
-
-def abline(intercept, slope):
-    """Plot a line from slope and intercept"""
-    axes = plt.gca()
-    x_vals = np.array(axes.get_xlim())
-    y_vals = intercept + slope * x_vals
-    plt.plot(x_vals, y_vals, '--')
+from line_fitting import LineModel, plot_results
 
 
 if __name__ == "__main__":
@@ -21,8 +11,4 @@ if __name__ == "__main__":
     print("Points: ")
     print(fit.get_points())
 
-    for x, y in data:
-        plt.scatter(x, y, None, 'r' if (x, y) in fit.get_points() else 'b')
-
-    abline(*fit.get_params())
-    plt.show()
+    plot_results(data, fit.get_points(), fit.get_params())
