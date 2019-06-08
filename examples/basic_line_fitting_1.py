@@ -1,5 +1,5 @@
 from ransac import ransac_fit
-from line_model import LineModel
+from line_fitting import LineModel
 import numpy as np
 import matplotlib.pyplot as plt
 
