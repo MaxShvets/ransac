@@ -14,7 +14,7 @@ class LineModel:
 
     def deviation(self, point):
         x, y = point
-        return (y - (self._beta0 + x * self._beta1)) ** 2
+        return abs(y - (self._beta0 + x * self._beta1))
 
     def error(self):
         return sum(map(lambda xi, yi: self.deviation((xi, yi)), self._x, self._y))
