@@ -1,7 +1,27 @@
 import random
 
 
-def ransac_fit(data, model_constructor, min_model_size, max_iterations_num, error_tolerance, min_accepted_size):
+def ransac_fit(
+        data,
+        model_constructor,
+        min_model_size,
+        max_iterations_num,
+        error_tolerance,
+        min_accepted_size
+):
+    """
+    Apply RANSAC to fit dataset to some model
+    :param data: a set of points
+    :param model_constructor:
+        function that creates a model based on some subset of points
+    :param min_model_size:
+        minimal number of points needed to create a model
+    :param max_iterations_num: maximal number of algorithm iterations
+    :param error_tolerance:
+        tolerance for error when deciding whether a point fits a model
+    :param min_accepted_size: minimal accepted size of a consensus set
+    :return:
+    """
     iterations_num = 0
     best_model = None
     smallest_error = None
