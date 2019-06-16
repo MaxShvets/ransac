@@ -15,13 +15,16 @@ def ransac_fit(data, model_constructor, min_model_size, max_iterations_num, erro
             if model.deviation(point) < error_tolerance:
                 inliers.add(point)
 
-        if min_accepted_size <= len(inliers) + min_model_size:
-            model_with_inliers = model_constructor(model_points | inliers)
-            error = model_with_inliers.error()
+        model_with_inliers = model_constructor(model_points | inliers)
 
-            if (not smallest_error) or error < smallest_error:
-                smallest_error = error
-                best_model = model_with_inliers
+        if min_accepted_size <= len(inliers) + min_model_size:
+            return model_with_inliers
+
+        error = model_with_inliers.error(data)
+
+        if (not smallest_error) or error < smallest_error:
+            smallest_error = error
+            best_model = model_with_inliers
 
         iterations_num += 1
 
